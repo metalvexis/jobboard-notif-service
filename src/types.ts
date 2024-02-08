@@ -16,7 +16,7 @@ export type NotificationReq = {
     department: string;
     employment_type: string;
     id: number;
-    job_descriptions: JobDescription[];
+    job_descriptions: { [k: string]: JobDescription[] };
     name: string;
     occupation: string;
     occupation_category: string;

@@ -23,9 +23,13 @@ export const listenToQueue = async (queue: string) => {
     ch1.consume(queue, async (msg) => {
       if (!msg) return;
 
-      await notifyModerators(msg);
-
-      ch1.ack(msg);
+      try {
+        await notifyModerators(msg);
+        ch1.ack(msg);
+      } catch (error) {
+        console.error(error);
+        ch1.nack(msg);
+      }
     });
 
     console.log("listening to queue", queue);

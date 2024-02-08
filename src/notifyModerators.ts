@@ -49,7 +49,7 @@ export const generateEmailBody = (
       <h3>Job Description: </h3>
 
       <div>
-      ${notifReq.job.job_descriptions
+      ${notifReq.job.job_descriptions?.jobDescription
         ?.map(
           (desc) => `
         <p>
