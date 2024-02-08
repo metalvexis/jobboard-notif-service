@@ -20,17 +20,23 @@ export const listenToQueue = async (queue: string) => {
       durable: true,
     });
 
-    ch1.consume(queue, async (msg) => {
-      if (!msg) return;
+    ch1.consume(
+      queue,
+      async (msg) => {
+        if (!msg) return;
 
-      try {
-        await notifyModerators(msg);
-        ch1.ack(msg);
-      } catch (error) {
-        console.error(error);
-        ch1.nack(msg);
+        try {
+          await notifyModerators(msg);
+          ch1.ack(msg);
+        } catch (error) {
+          console.error(error);
+          ch1.nack(msg);
+        }
+      },
+      {
+        noAck: false,
       }
-    });
+    );
 
     console.log("listening to queue", queue);
 
