@@ -1,3 +1,4 @@
+// Create a unit test for every function in src/notifyModerators.ts
 import type { ConsumeMessage } from "amqplib";
 import type { NotificationReq, NotificationLog } from "./types";
 import jwt from "jsonwebtoken";
